@@ -1,0 +1,41 @@
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #0a3d62;
+  --muted-foreground: #6b6b6b;
+  --card: #f2f4f7;
+  --brand-navy: #0a3d62;
+  --brand-blue: #1479c9;
+  --brand-green: #28a745;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-open-sans);
+  --font-heading: var(--font-montserrat);
+}
+
+body {
+  background: var(--background);
+  color: #12263a;
+  font-family: var(--font-open-sans), Arial, sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-montserrat), Arial, sans-serif;
+}
+
+.container-shell {
+  @apply mx-auto w-full max-w-7xl px-6 lg:px-10;
+}
+
+.section-space {
+  @apply py-20 md:py-24;
+}
