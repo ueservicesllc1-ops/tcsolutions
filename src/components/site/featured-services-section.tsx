@@ -9,7 +9,7 @@ const highlights = [
       "Window and glass cleaning",
       "Final touch-ups before delivery",
     ],
-    image: "/api/b2-image?path=post-construction.jpg",
+    image: "/postconstrution.png",
     reverse: false,
   },
   {
@@ -20,7 +20,7 @@ const highlights = [
       "High-touch surface disinfection",
       "Consistent professional appearance",
     ],
-    image: "/api/b2-image?path=office-commercial.jpg",
+    image: "/office.png",
     reverse: true,
   },
 ];

@@ -5,7 +5,7 @@ export function HeroSection() {
     <section id="home" className="relative overflow-hidden bg-white section-space">
       <div className="absolute inset-0 z-0 bg-[radial-gradient(circle_at_top_left,_rgba(20,121,201,0.12),_transparent_45%)]" />
       <div
-        className="absolute inset-y-0 right-0 z-10 w-full md:-right-[12%] md:w-[65%]"
+        className="absolute inset-y-0 right-0 z-10 w-full md:w-[65%]"
         style={{
           WebkitMaskImage:
             "linear-gradient(to right, rgba(0,0,0,0) 0%, rgba(0,0,0,0.28) 18%, rgba(0,0,0,0.72) 34%, rgba(0,0,0,1) 52%)",
@@ -16,10 +16,10 @@ export function HeroSection() {
         }}
       >
         <Image
-          src="/hero-cleaning.png"
+          src="/bannerhero.png"
           alt="Professional cleaning in a modern office"
           fill
-          className="object-cover object-[92%_center] md:object-right"
+          className="object-cover object-[78%_center] md:object-[35%_center]"
           priority
         />
       </div>

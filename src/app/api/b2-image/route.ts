@@ -1,8 +1,26 @@
 import { NextRequest } from "next/server";
+import { readFile } from "node:fs/promises";
+import { join } from "node:path";
 
 const B2_BUCKET_URL =
   process.env.B2_BUCKET_PUBLIC_URL ?? "https://s3.us-east-005.backblazeb2.com/tcsolutionsapp";
-const FALLBACK_IMAGE_URL = "/hero-cleaning.png";
+const FALLBACK_IMAGE_FILE = "hero-cleaning.png";
+
+async function fallbackImageResponse() {
+  try {
+    const imagePath = join(process.cwd(), "public", FALLBACK_IMAGE_FILE);
+    const imageBuffer = await readFile(imagePath);
+    return new Response(imageBuffer, {
+      status: 200,
+      headers: {
+        "Content-Type": "image/png",
+        "Cache-Control": "public, max-age=300, s-maxage=300, stale-while-revalidate=86400",
+      },
+    });
+  } catch {
+    return new Response("Fallback image not found.", { status: 404 });
+  }
+}
 
 export async function GET(request: NextRequest) {
   const filePath = request.nextUrl.searchParams.get("path");
@@ -25,7 +43,7 @@ export async function GET(request: NextRequest) {
     });
 
     if (!upstream.ok || !upstream.body) {
-      return Response.redirect(new URL(FALLBACK_IMAGE_URL, request.url), 307);
+      return fallbackImageResponse();
     }
 
     const contentType = upstream.headers.get("content-type") ?? "application/octet-stream";
@@ -38,6 +56,6 @@ export async function GET(request: NextRequest) {
       },
     });
   } catch {
-    return Response.redirect(new URL(FALLBACK_IMAGE_URL, request.url), 307);
+    return fallbackImageResponse();
   }
 }
